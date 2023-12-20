@@ -9,7 +9,9 @@ export class ListComponent {
 
   public heroNames: string[] = ['Spidermar', 'Thor', 'Ironman', 'Hulk'];
 
+  public deleteHero?:string = '';
   removeLastHero(): void{
-    this.heroNames.pop();
+    this.deleteHero = this.heroNames.pop();
+    //console.log(deleteHero)
   }
 }
