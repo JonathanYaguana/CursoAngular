@@ -14,7 +14,7 @@ import { Component } from "@angular/core";
 
 })
 
-export class counterComponent{
+export class CounterComponent{
 
   public counter: number = 10;
 
