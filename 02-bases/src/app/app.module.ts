@@ -3,11 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 
-import { ListComponent } from './heroes/list/list.component';
-import { HeroComponent } from './heroes/hero/hero.component';
-import { CounterComponent } from './counter/componentes/counter/counter.component';
 import { CounterModule } from './counter/counter.module';
 import { HeroesModule } from './heroes/hero.module';
+import { mainPageComponent } from './dbz/pages/main-page.components';
+import { DbzModule } from './dbz/dbz.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +15,8 @@ import { HeroesModule } from './heroes/hero.module';
   imports: [
     BrowserModule,
     CounterModule,
-    HeroesModule
+    HeroesModule,
+    DbzModule
   ],
   providers: [],
   bootstrap: [AppComponent]
