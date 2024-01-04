@@ -12,4 +12,8 @@ export class AddCharacterComponent {
     name:'',
     power: 0
   }
+
+  emitCharacter():void {
+    console.log(this.character);
+  }
 }
