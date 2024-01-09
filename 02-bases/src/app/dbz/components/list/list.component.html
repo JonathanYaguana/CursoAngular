@@ -7,7 +7,7 @@
   let isEvent = even;
   let isOdd = odd"
 
-  class="list-group-item" [ngClass]="{'list-group-item-info': isFirts,
+  class="list-group-item d-flex justify-content-between" [ngClass]="{'list-group-item-info': isFirts,
   'list-group-item-success': isOdd
   }">
   <!--isFists obtiene el primero de la lista-->
@@ -15,11 +15,14 @@
   <!--isEvent obtiene el par de la lista-->
   <!--isOdd obtiene el impar de la lista-->
 
-  <span class="text-primary">{{i}}. </span>
 
-  <span>{{list.name}} </span>
-  <strong>Power: </strong>
-  <span>{{list.power}}</span>
+  <div>
+    <span class="text-primary">{{i}}. </span>
+    <span>{{list.name}} </span>
+    <strong>Power: </strong>
+    <span>{{list.power}}</span>
+  </div>
+  <button type="button" class="btn btn-danger">x</button>
 
 </li>
 </ul>
