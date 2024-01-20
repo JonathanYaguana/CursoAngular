@@ -17,10 +17,13 @@ export class ListComponent {
   }]
 
   @Output()
-  public onDeleteId: EventEmitter<number> = new EventEmitter();
+  public onDeleteId: EventEmitter<string> = new EventEmitter();
 
-  onDeletCharacter(index:number):void{
+  onDeletCharacter(id?:string):void{
     //Todo: Emitir el ID del personaje
-    this.onDeleteId.emit(index);
+
+    if (!id) return;
+
+    this.onDeleteId.emit(id);
   }
 }
