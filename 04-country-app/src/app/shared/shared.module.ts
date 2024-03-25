@@ -26,6 +26,7 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
     AboutPageComponent,
     ContactPageComponent,
     HomePageComponent,
+    SearchBoxComponent,
     SidebarComponent
   ]
 })
