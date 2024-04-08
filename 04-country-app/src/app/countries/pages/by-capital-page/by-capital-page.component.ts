@@ -17,9 +17,11 @@ export class ByCapitalPageComponent {
   searchByCapital(term:string):void {
 
     this.countriesService.searchCapital(term)
-      .subscribe( countries => {
-        this.countries = countries;
-    });
+      .subscribe(
+        countries => {
+          this.countries = countries;
+        }
+      );
 
     //console.log('Desde ByCapitalPage');
     //console.log({term});
