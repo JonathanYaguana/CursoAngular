@@ -10,6 +10,11 @@ export class CountriesService {
 
   constructor(private http: HttpClient) { }
 
+  searchByAlpaCode (cod: string): Observable<Country[]> {
+
+    return this.typeSearch('alpha',cod);
+  }
+
   searchCapital ( term:string ): Observable<Country[]> {
 
     return this.typeSearch('capital',term)
