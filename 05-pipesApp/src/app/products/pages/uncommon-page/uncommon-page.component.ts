@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PrimeNgModule } from '../../../prime-ng/prime-ng.module';
+import { interval, tap } from 'rxjs';
 
 @Component({
   selector: 'app-uncommon-page',
@@ -34,4 +35,23 @@ export class UncommonPageComponent {
     this.clintes.shift();
   }
 
+  // keyValue Pipe
+  public person = {
+    name: 'Jonathan',
+    age: 31,
+    address: 'Loja, Ecuador'
+  }
+
+  // Async Pipe
+  public myObservableTimer = interval(2000).pipe(
+    tap( value => console.log('tap: ', value))
+  );
+
+  public promiseValue = new Promise( (resolve, reject) =>{
+    setTimeout(() => {
+      resolve( 'Tenemos data en la promesa.');
+      console.log( 'Tenemos data en la promesa.');
+      this.person.name = 'Otro nombre'
+    }, 3500);
+  })
 }
