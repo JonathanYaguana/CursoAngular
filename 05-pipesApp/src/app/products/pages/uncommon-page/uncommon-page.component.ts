@@ -21,4 +21,17 @@ export class UncommonPageComponent {
     this.gener = 'female';
   }
 
+  // i18nPlural
+  public clintes: string[] = ['Jaina', 'Lyn', 'Churon', 'Niña', 'Negrito', 'Max', 'Jolly', 'Liam', 'Zeus', 'Kukis']
+  public clientesMap = {
+    '=0': 'no tenemos ningún cliente esperando.',
+    '=1': 'tenemos un cliente esperando.',
+    '=2': 'tenemos 2 personas esperando.',
+    'other': 'tenemos # clientes esperando.',
+  }
+
+  deleteClient():void {
+    this.clintes.shift();
+  }
+
 }
