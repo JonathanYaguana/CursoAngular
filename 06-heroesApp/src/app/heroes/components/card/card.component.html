@@ -1,6 +1,5 @@
-<mat-card>
+<mat-card style="background: #673ab7;">
   <mat-card-header>
-
     <mat-card-title>
       {{hero.superhero}}
     </mat-card-title>
@@ -12,6 +11,7 @@
 
 
   <!-- TODO: imagen -->
+   <img [src]="hero | heroImage" [alt]="hero.superhero">
 
   <mat-card-content class="mt-2">
     <h4>{{ hero.publisher }}</h4>
