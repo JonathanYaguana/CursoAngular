@@ -166,6 +166,15 @@
       "alter_ego": "Norrin Radd",
       "first_appearance": "The Fantastic Four #48",
       "characters": "Norrin Radd"
+    },
+    {
+      "id": "cQRXduK",
+      "superhero": "Laynos",
+      "publisher": "DC Comics",
+      "alter_ego": "Jonathan",
+      "first_appearance": "Wow",
+      "characters": "Warlock",
+      "alt_img": "https://static.wikia.nocookie.net/wow-freedom/images/0/0d/T5warlock.jpg"
     }
   ]
 }
