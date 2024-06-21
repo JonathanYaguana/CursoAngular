@@ -1,7 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { MatDialog } from '@angular/material/dialog';
+
 import { Publisher, Hero } from '../../interfaces/hero.interface';
 import { HeroesService } from '../../services/heroes.service';
+import { filter, switchMap } from 'rxjs';
+import { ConfirmDialogComponent } from '../../components/confirmDialog/confirmDialog.component';
 
 @Component({
   selector: 'app-new-page',
@@ -9,7 +15,7 @@ import { HeroesService } from '../../services/heroes.service';
   styles: [
   ]
 })
-export class NewPageComponent {
+export class NewPageComponent implements OnInit{
 
   //Formulario reactivo
   public heroForm = new FormGroup({
@@ -27,7 +33,12 @@ export class NewPageComponent {
     {id: 'Marver Comics', desc: 'Marver - Comics'},
   ]
 
-  constructor ( private heroeServicve: HeroesService) {}
+  constructor (
+    private heroeServicve: HeroesService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private dialog: MatDialog,
+  ) {}
 
   get currentHero(): Hero {
 
@@ -55,5 +66,50 @@ export class NewPageComponent {
       });
 
   };
+
+  onDeleteHero() {
+    if ( !this.currentHero.id ) throw Error('Hero id is required');
+
+    const dialogRef = this.dialog.open( ConfirmDialogComponent, {
+      data: this.heroForm.value
+    });
+
+    dialogRef.afterClosed()
+      .pipe(
+        filter( (result: boolean) => result ),
+        switchMap( () => this.heroeServicve.deleteHeroById( this.currentHero.id) ),
+        filter( (wasDeleted: boolean) => wasDeleted)
+      )
+      .subscribe(result =>{
+        this.router.navigate( ['/heroes'] );
+      });
+
+    // dialogRef.afterClosed().subscribe(result =>{
+    //   if( !result ) result;
+
+    //   this.heroeServicve.deleteHeroById( this.currentHero.id )
+    //   .subscribe( wasDeleted => {
+    //     if ( wasDeleted )
+    //       this.router.navigate(['/heroes']);
+    //   });
+
+    // });
+  }
+
+  ngOnInit(): void {
+    if( !this.router.url.includes('edit') ) return;
+
+    this.activatedRoute.params
+    .pipe(
+      switchMap( ({ id }) => this.heroeServicve.getHeroById( id ) ),
+    ).subscribe( hero => {
+
+      if ( !hero) return this.router.navigateByUrl('/');
+
+      this.heroForm.reset( hero );
+      return;
+
+    });
+  }
 
 }
