@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   templateUrl: './dynamic-page.component.html',
@@ -18,10 +18,17 @@ export class DynamicPageComponent {
 
   constructor ( private fb: FormBuilder) {}
 
+  get favoriteGame() {
+    return this.myForm.get('favoriteGame') as FormArray;
+  }
+
   onSubmit(): void {
     if( this.myForm.invalid ) {
       this.myForm.markAllAsTouched();
       return;
     }
+
+    console.log(this.myForm.value);
+    this.myForm.reset();
   }
 }
