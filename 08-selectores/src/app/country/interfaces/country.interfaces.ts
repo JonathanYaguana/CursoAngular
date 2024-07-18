@@ -6,7 +6,13 @@ export enum Region {
   Oceania = 'Oceania',
 }
 
-export interface Welcome {
+export interface SmallCountry {
+  name: string;
+  cca3: string;
+  borders: string[];
+}
+
+export interface Country {
   name:         Name;
   cca3:         string;
   status:       Status;
@@ -128,11 +134,11 @@ export enum Subregion {
 // Converts JSON strings to/from your types
 // and asserts the results of JSON.parse at runtime
 export class Convert {
-  public static toWelcome(json: string): Welcome[] {
+  public static toWelcome(json: string): Country[] {
       return cast(JSON.parse(json), a(r("Welcome")));
   }
 
-  public static welcomeToJson(value: Welcome[]): string {
+  public static welcomeToJson(value: Country[]): string {
       return JSON.stringify(uncast(value, a(r("Welcome"))), null, 2);
   }
 }
