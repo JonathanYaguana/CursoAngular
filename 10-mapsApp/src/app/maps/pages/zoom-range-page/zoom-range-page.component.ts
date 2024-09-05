@@ -8,10 +8,6 @@ import { LngLat, Map } from 'mapbox-gl'; // or "const mapboxgl = require('mapbox
 })
 export class ZoomRangePageComponent implements AfterViewInit, OnDestroy{
 
-  ngOnDestroy(): void {
-    this.map?.remove();//remover el mapa y todos los listener
-  }
-
   @ViewChild('map') divMap?: ElementRef;
 
   public zoom: number = 10;
@@ -50,6 +46,10 @@ export class ZoomRangePageComponent implements AfterViewInit, OnDestroy{
       const { lng, lat } = this.currentLngLat;
       //console.log(this.currentLngLat);
     })
+  }
+
+  ngOnDestroy(): void {
+    this.map?.remove();//remover el mapa y todos los listener
   }
 
   zoomIn() {
