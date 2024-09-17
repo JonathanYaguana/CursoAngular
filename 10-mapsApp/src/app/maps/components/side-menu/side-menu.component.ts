@@ -16,6 +16,6 @@ export class SideMenuComponent {
     { route: '/maps/fullscreen', name: 'FullScreen' },
     { route: '/maps/zoom-range', name: 'Zoom-range' },
     { route: '/maps/markers', name: 'Markers' },
-    { route: '/maps/properties', name: 'Properties' },
+    { route: '/maps/properties', name: 'Houses' },
   ]
 }
