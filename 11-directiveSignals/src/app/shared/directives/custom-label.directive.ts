@@ -47,6 +47,19 @@ export class CustomLabelDirective {
       return;
     }
 
+    if ( errors.includes('minlength') ){
+      const min = this._errors!['minlength']['requiredLength'];
+      const current = this._errors!['minlength']['actualLength'];
+    //console.log(min)
+      this.htmlElement.nativeElement.innerText = `Minimo ${current}/${ min } caracteres.`;
+      return;
+    }
+
+    if ( errors.includes('email') ){
+      this.htmlElement.nativeElement.innerText = 'No tiene el formato email';
+      return;
+    }
+
   }
 
 }
