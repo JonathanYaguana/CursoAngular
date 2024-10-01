@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
-interface menuItem{
+interface MenuItem{
   title: string;
   router: string;
 }
@@ -12,10 +12,16 @@ interface menuItem{
 })
 export class SideMenuComponent {
 
-  public menuItems: menuItem [] = [
-    { title: 'Counter', router: 'counter'},
-    { title: 'Usuario', router: 'user-info'},
-    { title: 'Mutaciones', router: 'properties'},
-  ]
+  public menuItems = signal<MenuItem[]>([
+    { title: 'Counter', router: 'counter' },
+    { title: 'Usuario', router: 'user-info' },
+    { title: 'Mutaciones', router: 'properties' },
+  ]);
+
+  // public menuItems: menuItem [] = [
+  //   { title: 'Counter', router: 'counter'},
+  //   { title: 'Usuario', router: 'user-info'},
+  //   { title: 'Mutaciones', router: 'properties'},
+  // ]
 
 }
