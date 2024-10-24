@@ -32,11 +32,7 @@ export class AuthService {
 
     return this.http.post<LoginResponse>( url, body )
     .pipe(
-      tap( ({ user, token }) => {
-        this._currentUser.set( user );
-        this._authStatus.set( AuthStatus.authenticated );
-        localStorage.setItem( 'token', token );
-      }),
+      tap( ({ user, token }) => this.setAuthentication( user, token ) ),
       map( () => true ),
 
       //Todo errores
@@ -57,17 +53,19 @@ export class AuthService {
 
     return this.http.get<CheckTokenResponse>(url, { headers })
     .pipe(
-      map(({ user, token }) => {
-        this._currentUser.set( user );
-        this._authStatus.set( AuthStatus.authenticated );
-        localStorage.setItem( 'token', token );
-
-        return true
-      }),
+      map(({ user, token }) => this.setAuthentication( user, token )),
       catchError( () => {
         this._authStatus.set( AuthStatus.authenticated );
         return of( false );
       })
     )
+  }
+
+
+  private setAuthentication( user: User, token: string): boolean {
+    this._currentUser.set( user );
+    this._authStatus.set( AuthStatus.authenticated );
+    localStorage.setItem( 'token', token );
+    return true;
   }
 }
