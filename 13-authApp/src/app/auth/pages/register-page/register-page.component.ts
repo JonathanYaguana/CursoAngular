@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class RegisterPageComponent {
 
+  private setRoles(): string [] {
+    return ['User', 'Admin']
+  }
+
 }

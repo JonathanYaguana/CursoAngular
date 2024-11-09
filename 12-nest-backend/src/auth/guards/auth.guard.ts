@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
     const token = this.extractTokenFromHeader(request);
 
     if (!token) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('There is no bearer token');
     }
 
     try {
@@ -31,7 +31,7 @@ export class AuthGuard implements CanActivate {
       if( !user ) throw new UnauthorizedException('User does not exists');
       if( !user.isActive ) throw new UnauthorizedException('User not is Active');
             
-      request['user'] = payload;
+      request['user'] = user;
 
     } catch (error) {
       throw new UnauthorizedException();
