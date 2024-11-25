@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { AuthService } from '../../services/auth.service';
 
 @Component({
 
@@ -8,9 +10,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterPageComponent implements OnInit{
 
-  constructor(
-    private fb: FormBuilder
-  ){}
+
+private fb = inject( FormBuilder );
+private authService = inject( AuthService );
 
   ngOnInit(): void {
     this.myForm.reset( this.usuario )
@@ -28,8 +30,12 @@ export class RegisterPageComponent implements OnInit{
   }
 
   onSave(){
-    this.usuario = this.myForm.value
-    console.log(this.myForm.value)
+    //this.usuario = this.myForm.value
+    //console.log(this.myForm.value)
+
+
+    this.authService.register( this.myForm);
+
 
   }
 

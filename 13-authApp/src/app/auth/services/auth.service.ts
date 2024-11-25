@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
 
 import { AuthStatus, CheckTokenResponse, LoginResponse, User } from '../interfaces';
+import { FormGroup } from '@angular/forms';
 
 
 @Injectable({
@@ -75,6 +76,10 @@ export class AuthService {
     localStorage.removeItem('token');
     this._currentUser.set(null);
     this._authStatus.set( AuthStatus.notAuthenticated);
+  }
+
+  register( form: FormGroup) {
+    console.log( form.value )
   }
 
 }
