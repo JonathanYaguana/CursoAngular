@@ -1,18 +1,23 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { PlacesService } from '../../services';
+import { LoadingComponent } from "../../components/loading/loading.component";
+import { MapViewComponent } from "../../components/mapView/mapView.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-mapScreen',
   standalone: true,
-  imports: [],
+  imports: [LoadingComponent, MapViewComponent, CommonModule],
   templateUrl: './mapScreen.component.html',
   styleUrls: ['./mapScreen.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MapScreenComponent implements OnInit {
+export class MapScreenComponent {
 
-  constructor() { }
+  private placeService = inject(PlacesService);
 
-  ngOnInit() {
+  get isUserLocationReady(){
+    return this.placeService.isUserLocationReady;
   }
 
 }
