@@ -8,15 +8,14 @@ export class PlacesService {
   public useLocation?: [number, number];
 
   get isUserLocationReady(): boolean {
-    return !this.useLocation;
+    return !!this.useLocation;
   }
 
   constructor() {
     this.getUserLocation();
-    console.log(this.getUserLocation());
   }
 
-  public async getUserLocation(): Promise<[number, number]>{
+  public async getUserLocation(): Promise<[number, number]> {
 
     return new Promise( (resolve, reject ) => {
 
@@ -24,7 +23,6 @@ export class PlacesService {
         ({ coords }) => {
           this.useLocation = [ coords.longitude, coords.latitude ];
           resolve( this.useLocation );
-
         },
         ( err ) => {
           alert('No se pudo obtener la geolocalización')
@@ -32,6 +30,9 @@ export class PlacesService {
           reject();
         }
       );
-    })
+
+
+    });
+
   }
 }

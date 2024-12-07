@@ -1,16 +1,12 @@
-@if (!isUserLocationReady) {
+<!-- @if (!isUserLocationReady) {
   <app-loading/>
 }@else {
   <app-mapView/>
-}
+} -->
 
-<!-- <h1>
-
-  {{ isUserLocationReady}}
-</h1>
-
+{{!isUserLocationReady}}
 <app-loading *ngIf="!isUserLocationReady; else mapReady"></app-loading>
 
 <ng-template #mapReady>
-  <app-mapView/>
-</ng-template> -->
+    <app-mapView/>
+</ng-template>

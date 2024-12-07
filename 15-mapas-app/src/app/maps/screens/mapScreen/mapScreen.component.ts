@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { PlacesService } from '../../services';
-import { LoadingComponent } from "../../components/loading/loading.component";
-import { MapViewComponent } from "../../components/mapView/mapView.component";
 import { CommonModule } from '@angular/common';
+import { LoadingComponent } from '../../components/loading/loading.component';
+import { MapViewComponent } from '../../components/mapView/mapView.component';
 
 @Component({
   selector: 'app-mapScreen',
@@ -14,10 +14,13 @@ import { CommonModule } from '@angular/common';
 })
 export class MapScreenComponent {
 
-  private placeService = inject(PlacesService);
+  private placesService = inject(PlacesService);
 
-  get isUserLocationReady(){
-    return this.placeService.isUserLocationReady;
+  get isUserLocationReady() {
+    return this.placesService.isUserLocationReady;
   }
 
+  constructor() {
+    console.log(this.placesService.getUserLocation())
+  }
 }
